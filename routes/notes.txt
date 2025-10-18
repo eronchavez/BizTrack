@@ -1,0 +1,23 @@
+
+
+The key features of this website :
+
+   Business:
+
+        1. Can add new business 
+        2. View All businesses
+        3. Edit business
+        4. Delete Business 
+        5. Each business can have multiple employees
+
+    Employees: 
+
+        1. add , edit and delete employee
+        2. View all employees under a business
+
+Relationship: 
+
+    Business hasMany Employee
+    
+    Employee belongsTo Business
+
