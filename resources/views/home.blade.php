@@ -8,7 +8,7 @@
     <form action="{{ route('role') }}" method="POST">
         @csrf
         <input type="text" name="email" placeholder="EMAIL"> <br> <br>
-        <input type="text" name="password" placeholder="PASSWORD"> <br><br>
+        <input type="password" name="password" placeholder="PASSWORD"> <br><br>
         <input type="submit">
     </form>
 
