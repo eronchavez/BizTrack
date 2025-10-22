@@ -21,3 +21,13 @@ Relationship:
     
     Employee belongsTo Business
 
+
+
+flow : 
+    User Log in -> Data will pass to middleware or controller?
+
+    if middleware, i can redirect the page based on user Log in  and i also have condition
+    if the user is admin or manager.
+
+    if controller , i already get the email from the form and i also compare the email from form and
+    the email from the database. 

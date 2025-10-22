@@ -15,10 +15,9 @@ class RoleController extends Controller
 
         $user = User::where('email',$email)->first();
        
-        // Kailangan maayos mo na yung redirection tomorrow
-        // Either the user is admin or manager
+      
+        $userRole = $user->role->name;
         
-        return $user->role->name;
         
 
         // Condition to determine if the user is admin or manager.
@@ -27,18 +26,17 @@ class RoleController extends Controller
             
         }
 
-        if($user->role->name === 'admin')
+        switch($userRole)
         {
-            return redirect()->route('admin.dashboard');
-
-        }elseif($user->role->name === 'manager')
-        {
-            return redirect()->route('manager.dashboard');
-
-        }else
-        {
-            return redirect()->route('role');
+            case 'admin':
+                 return redirect()->route('admin.dashboard');
+            case 'manager' :
+                 return redirect()->route('manager.dashboard');
+            default :
+                return redirect()->route('role');
         }
+
+       
 
 
     }

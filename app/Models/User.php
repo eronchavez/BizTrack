@@ -11,4 +11,6 @@ class User extends Model
     {
         return $this->belongsTo(Role::class);
     }
+
+    
 }

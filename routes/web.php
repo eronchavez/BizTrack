@@ -7,6 +7,16 @@ use App\Http\Controllers\ManagerController;
 
 
 
+Route::get('/', function () {
+    return "Lipat ka sa route '/login' pre";
+});
+
+
+// routes/web.php
+Route::get('/test-role', function () {
+    $user = \App\Models\User::find(1);
+    return \App\Models\Role::find($user->role_id);
+});
 
 Route::get('/login', function () {
     return view('home');
