@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                         'name' => 'Aaron Chavez',
                         'email' => 'eronadmin@gmail.com' ,
                         'password' => bcrypt('admin123') , 
-                        'roles_id' => 1
+                        'role_id' => 1
                         
                     ],
 
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
                         'name' => 'Donna Chavez',
                         'email' => 'donnamanager@gmail.com' ,
                         'password' => bcrypt('manager123') , 
-                        'roles_id' => 2
+                        'role_id' => 2
                     ]
 
                 ]

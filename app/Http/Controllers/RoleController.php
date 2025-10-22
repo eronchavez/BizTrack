@@ -14,11 +14,17 @@ class RoleController extends Controller
         $password = $request->password;
 
         $user = User::where('email',$email)->first();
-
+       
+        // Kailangan maayos mo na yung redirection tomorrow
+        // Either the user is admin or manager
         
+        return $user->role->name;
+        
+
         // Condition to determine if the user is admin or manager.
-        if(!$user || $password !== $user->password){
+        if(!$user){
             return back()->with('error' , 'Invalid credentials!');
+            
         }
 
         if($user->role->name === 'admin')

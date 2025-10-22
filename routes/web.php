@@ -5,12 +5,16 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 
-Route::get('/', function () {
+
+
+
+Route::get('/login', function () {
     return view('home');
-});
+})->name('login');
 
 
-Route::post('/role', [RoleController::class, 'role'])->name('role');
+// The info from the form  will send to this route.
+Route::post('/login', [RoleController::class, 'role'])->name('role');
 
 Route::middleware(['auth' , 'role:admin'])->group(function()
     {
