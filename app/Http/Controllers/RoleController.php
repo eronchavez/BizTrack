@@ -4,42 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth; 
 
 class RoleController extends Controller
 {
-    
+        
     public function role(RoleRequest $request)
     {
-        $email = $request->email;
-        $password = $request->password;
+        // Checking the input from view
+        $credentials = $request->only('email', 'password');
 
-        $user = User::where('email',$email)->first();
-       
-      
-        $userRole = $user->role->name;
-        
-        
-
-        // Condition to determine if the user is admin or manager.
-        if(!$user){
-            return back()->with('error' , 'Invalid credentials!');
+        // Auth::attempt is logging in the credentials
+        if (Auth::attempt($credentials)) {
+            // If credentials passsed, that is who is currenly logged in
+            $user = Auth::user(); 
             
+            // checks who is currently logged in
+            if ($user->role->name === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role->name === 'manager') {
+                return redirect()->route('manager.dashboard');
+            }
+            
+            // log out if roles not matched
+            Auth::logout();
+            return back()->with('error', 'Role not recognized.');
         }
 
-        switch($userRole)
-        {
-            case 'admin':
-                 return redirect()->route('admin.dashboard');
-            case 'manager' :
-                 return redirect()->route('manager.dashboard');
-            default :
-                return redirect()->route('role');
-        }
-
-       
-
-
+        
+        return back()->with('error', 'Invalid credentials!');
     }
-
    
 }
