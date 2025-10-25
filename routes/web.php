@@ -12,11 +12,7 @@ Route::get('/', function () {
 });
 
 
-// routes/web.php
-Route::get('/test-role', function () {
-    $user = \App\Models\User::find(1);
-    return \App\Models\Role::find($user->role_id);
-});
+
 
 Route::get('/login', function () {
     return view('home');
@@ -32,12 +28,14 @@ Route::middleware(['auth' , 'role:admin'])->group(function()
     }
 );
 
-
-
 Route::middleware(['auth' , 'role:manager'])->group(function()
     {
         Route::get('/manager/dashboard', [ManagerController::class , 'index'])->name('manager.dashboard');
     }
 );
+
+//Route for admin/manager CRUD
+
+Route::get('/admin/manager', [ManagerController::class , 'list'])->name('admin.manager');
 
 
